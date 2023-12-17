@@ -20,6 +20,11 @@ def contact():
 def post():
     return render_template('post.html')
 
+
+@app.route("/LOGIN.html")
+def login():
+    return render_template('LOGIN.html')
+
 @app.route("/Ganesh")
 def Ganesh():
     return "<p>Welcome Ganesh________</p>"
