@@ -73,5 +73,26 @@ def Ganesh():
     return "<p>Welcome Ganesh________</p>"
 
 
+@app.route("/Company.html")
+def Company():
+    return render_template('Company.html')
+
+@app.route("/Employee.html")
+def Employee():
+    return render_template('Employee.html')
+
+@app.route("/Salary.html")
+def Salary():
+    return render_template('Salary.html')
+
+
+
+@app.route("/Report.html")
+def Report():
+    return render_template('Report.html')
+
+
+
+
 
 app.run(debug=True)
