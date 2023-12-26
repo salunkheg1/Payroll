@@ -1,7 +1,6 @@
 from flask import Flask,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/payroll'
 db = SQLAlchemy(app)
@@ -41,10 +40,31 @@ def login():
     if(request.method=='POST'):
         name = request.form.get('username')
         password = request.form.get('password')
+        user_data = User.query.filter_by(USER_NAME=name).first()
+        if user_data:
+            if(password==user_data.PASSWORD):
+                print("Login Sucessfully")
+                return "<p>Login Sucessfully________</p>"
+            else:
+                print("Login failed Please try again")
+                return "<p>Login Failed________</p>"
+        else:
+            print("user not found")
+            return "<p>User Not Found________</p>"
+    return render_template('login.html')
+
+'''
+@app.route("/login.html", methods = ['GET', 'POST'])
+def login():
+    roll="ADMIN"
+    if(request.method=='POST'):
+        name = request.form.get('username')
+        password = request.form.get('password')
         entry = User(USER_NAME = name, PASSWORD = password , ROLL=roll)
         db.session.add(entry)
         db.session.commit()
     return render_template('login.html')
+'''
 
 
 
